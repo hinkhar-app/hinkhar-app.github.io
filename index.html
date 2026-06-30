@@ -188,6 +188,10 @@ footer{background:var(--dark);border-top:1px solid rgba(254,218,22,.08);padding:
 @media(max-width:640px){.plans-grid{grid-template-columns:1fr}.stat{padding:1.5rem 1rem}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  emailjs.init("MmZfLpfxCdS7kvaUc");
+</script>
 </head>
 <body>
 <nav>
@@ -513,7 +517,7 @@ window.addEventListener('DOMContentLoaded', function() {
 function setLang(lang) {
   document.body.classList.toggle('lang-mm', lang === 'mm');
   document.querySelectorAll('.lang-btn').forEach(function(b) {
-    b.classList.toggle('active', b.textContent.trim() === (lang === 'en' ? 'EN' : 'မြ'));
+    b.classList.toggle('active', b.textContent.trim() === (lang === 'en' ? 'EN' : 'မြန်မာ'));
   });
   localStorage.setItem('hk_lang', lang);
 }
@@ -532,9 +536,9 @@ document.addEventListener('click', function(e) {
 });
 
 function handleSubmit() {
-  var name    = document.getElementById('form-name').value.trim();
+ var name = document.getElementById('form-name').value.trim();
   var contact = document.getElementById('form-contact').value.trim();
-  var type    = document.getElementById('form-type').value;
+  var type = document.getElementById('form-type').value || "General";
   var message = document.getElementById('form-message').value.trim();
 
   if (!name || !contact || !message) {
@@ -542,22 +546,25 @@ function handleSubmit() {
     return;
   }
 
-  var subject = encodeURIComponent('HinKhar Enquiry — ' + (type || 'General') + ' — ' + name);
-  var body    = encodeURIComponent(
-    'Name: ' + name + '\n' +
-    'Contact: ' + contact + '\n' +
-    'Enquiry Type: ' + (type || 'General') + '\n\n' +
-    'Message:\n' + message + '\n\n' +
-    '--- Sent from HinKhar Website ---'
-  );
-  var mailto = 'mailto:' + HINKHAR.email + '?subject=' + subject + '&body=' + body;
-  window.location.href = mailto;
+  emailjs.send("service_7je6t61", "template_2kx2wks", {
+    from_name: name,
+    user_contact: contact,
+    enquiry_type: type,
+    message: message,
+    reply_to: contact
+  })
+  .then(function () {
+      document.getElementById('form-success').style.display = 'block';
 
-  document.getElementById('form-success').style.display = 'block';
-  document.getElementById('form-name').value    = '';
-  document.getElementById('form-contact').value = '';
-  document.getElementById('form-type').value    = '';
-  document.getElementById('form-message').value = '';
+      document.getElementById('form-name').value = "";
+      document.getElementById('form-contact').value = "";
+      document.getElementById('form-type').value = "";
+      document.getElementById('form-message').value = "";
+  })
+  .catch(function (error) {
+      console.error(error);
+      alert("Sorry, the message could not be sent. Please try again.");
+  });
 }
 
 var navLinks = document.querySelectorAll('.nav-links a');
