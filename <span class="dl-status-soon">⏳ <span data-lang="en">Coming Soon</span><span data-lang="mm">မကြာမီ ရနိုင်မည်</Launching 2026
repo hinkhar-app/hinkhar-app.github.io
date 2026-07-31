@@ -7,9 +7,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
 <script>
 const HINKHAR = {
-  stat_restaurants: "400+", stat_plans: "4", stat_city: "MDY", stat_download: "Free",
+  stat_restaurants: "800+", stat_plans: "4", stat_city: "MDY", stat_download: "Free",
   link_appstore: "https://apps.apple.com/us/app/hinkhar/id6769714863",
-  link_playstore: "#", link_apk: "#",
+  link_playstore: "https://play.google.com/store/apps/details?id=com.hinkhar.restaurantdirectory", link_apk: "#",
   link_register: "https://docs.google.com/forms/d/e/1FAIpQLSci3OLfmDpzLSkcCWHUmhshXcxZfhDe2t6eneYs3x-P9hX6VQ/viewform",
   phone: "+959 759 008 081", phone_link: "tel:+959759008081",
   email: "hinkhar.business@gmail.com",
@@ -289,10 +289,10 @@ footer{background:var(--dark);border-top:1px solid rgba(254,218,22,.08);padding:
 <div class="download-card">
 <div class="download-top">
 <a id="dl-appstore" href="#" target="_blank" class="dl-btn dl-btn-live"><div class="dl-store-icon">🛍</div><span class="dl-label"><span data-lang="en">Download on the</span><span data-lang="mm">ဒေါင်းလုဒ်ရယူရန်</span></span><span class="dl-name">App Store</span><span class="dl-status-live">✓ <span data-lang="en">Available Now</span><span data-lang="mm">ယခု ရနိုင်ပြီ</span></span></a>
-<a id="dl-playstore" href="#" class="dl-btn dl-btn-soon"><div class="dl-store-icon">▶</div><span class="dl-label"><span data-lang="en">Get it on</span><span data-lang="mm">ဒေါင်းလုဒ်ယူရန်</span></span><span class="dl-name">Google Play</span><span class="dl-status-soon">⏳ <span data-lang="en">Coming Soon</span><span data-lang="mm">မကြာမီ ရနိုင်မည်</span></span></a>
-<a id="dl-apk" href="#" class="dl-btn dl-btn-soon"><div class="dl-store-icon">⬇</div><span class="dl-label"><span data-lang="en">Direct Download</span><span data-lang="mm">တိုက်ရိုက် ဒေါင်းလုဒ်</span></span><span class="dl-name">APK File</span><span class="dl-status-soon">⏳ <span data-lang="en">Coming Soon</span><span data-lang="mm">မကြာမီ ရနိုင်မည်</span></span></a>
+<a id="dl-playstore" href="#" target="_blank" rel="noopener" class="dl-btn dl-btn-live"><div class="dl-store-icon">▶</div><span class="dl-label"><span data-lang="en">Get it on</span><span data-lang="mm">ဒေါင်းလုဒ်ယူရန်</span></span><span class="dl-name">Google Play</span><span class="dl-status-live">✓ <span data-lang="en">Available Now</span><span data-lang="mm">ယခု ရနိုင်ပြီ</span></span></a>
+<a id="dl-apk" href="#" class="dl-btn dl-btn-soon"><div class="dl-store-icon">⬇</div><span class="dl-label"><span data-lang="en">Direct Download</span><span data-lang="mm">တိုက်ရိုက် ဒေါင်းလုဒ်</span></span><span class="dl-name">APK File</span><<span class="dl-status-live">✓ <span data-lang="en">Available Now</span><span data-lang="mm">ယခု ရနိုင်ပြီ</span></span></a>
 </div>
-<p class="download-note"><span data-lang="en">All three download options will be available. Link updates automatically when ready.</span><span data-lang="mm">ဒေါင်းလုဒ် နည်းလမ်း ၃ ခုလုံး ရရှိနိုင်မည်ဖြစ်သည်။</span></p>
+<p class="download-note"><span data-lang="en">Available now on Google Play and the App Store. Direct APK download is coming soon.</span><span data-lang="mm">Google Play နှင့် App Store တွင် ယခုရရှိနိုင်ပြီး APK တိုက်ရိုက်ဒေါင်းလုဒ်ကို မကြာမီ ရရှိနိုင်မည်ဖြစ်သည်။</span></p>
 <div class="download-steps" style="margin-top:1.5rem;">
 <div class="download-steps-title">📲 <span data-lang="en">How to install APK</span><span data-lang="mm">APK ထည့်သွင်းနည်း</span></div>
 <div class="step"><div class="step-num">1</div><div class="step-text"><span data-lang="en"><strong>Tap "APK File" download button</strong> to get the file</span><span data-lang="mm"><strong>APK File</strong> ဒေါင်းလုဒ် ခလုတ် နှိပ်ပြီး ဖိုင် ရယူပါ။</span></div></div>
