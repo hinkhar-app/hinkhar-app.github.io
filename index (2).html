@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>HinKhar — Your Next Bite, My Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<script>
+const HINKHAR = {
+  stat_restaurants: "800+", stat_plans: "4", stat_city: "MDY", stat_download: "Free",
+  link_appstore: "https://apps.apple.com/us/app/hinkhar/id6769714863",
+  link_playstore: "https://play.google.com/store/apps/details?id=com.hinkhar.restaurantdirectory", link_apk: "#",
+  link_register: "https://docs.google.com/forms/d/e/1FAIpQLSci3OLfmDpzLSkcCWHUmhshXcxZfhDe2t6eneYs3x-P9hX6VQ/viewform",
+  phone: "+959 759 008 081", phone_link: "tel:+959759008081",
+  email: "hinkhar.business@gmail.com",
+  facebook: "https://facebook.com/HinKharFood", tiktok: "https://tiktok.com/@hinkhar",
+  linkedin: "http://linkedin.com/company/hinkhar", year: "2026"
+};
+</script>
+<style>
+:root{--red:#8A1A1A;--red-light:#A82020;--yellow:#FEDA16;--yellow-dim:rgba(254,218,22,.12);--yellow-dark:#D4B800;--dark:#0F0D0D;--dark-2:#1A1615;--dark-3:#231E1E;--dark-4:#2C2525;--white:#fff;--text:#EDE8E8;--text-soft:#B0A8A8;--gray:#7A7070;--radius:14px;--radius-sm:8px;--tr:.22s cubic-bezier(.4,0,.2,1)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter','Pyidaungsu',sans-serif;background:var(--dark);color:var(--text);line-height:1.6;overflow-x:hidden}
+.lang-switch{display:flex;align-items:center;gap:.4rem;background:var(--dark-3);border:1px solid rgba(254,218,22,.2);border-radius:99px;padding:.25rem .35rem}
+.lang-btn{background:none;border:none;cursor:pointer;font-size:.75rem;font-weight:700;padding:.3rem .7rem;border-radius:99px;color:var(--gray);transition:all var(--tr);font-family:inherit}
+.lang-btn.active{background:var(--yellow);color:var(--red)}
+.lang-btn:hover:not(.active){color:var(--white)}
+span[data-lang="mm"]{display:none}
+body.lang-mm span[data-lang="mm"]{display:inline}
+body.lang-mm span[data-lang="en"]{display:none}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;height:68px;background:rgba(15,13,13,.93);backdrop-filter:blur(16px);border-bottom:1px solid rgba(254,218,22,.1);gap:1rem}
+.nav-logo img{height:40px;display:block}
+.nav-links{display:flex;gap:1.8rem;list-style:none}
+.nav-links a{color:var(--text-soft);text-decoration:none;font-size:.85rem;font-weight:500;transition:color var(--tr);white-space:nowrap}
+.nav-links a:hover{color:var(--yellow)}
+.nav-right{display:flex;align-items:center;gap:.8rem}
+.nav-cta{background:var(--yellow);color:var(--red);padding:.5rem 1.1rem;border-radius:var(--radius-sm);font-size:.82rem;font-weight:700;text-decoration:none;white-space:nowrap;transition:background var(--tr)}
+.nav-cta:hover{background:var(--yellow-dark);color:var(--white)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hamburger span{display:block;width:22px;height:2px;background:var(--white);border-radius:2px}
+.mobile-menu{display:none;flex-direction:column;position:fixed;top:68px;left:0;right:0;background:var(--dark-2);border-bottom:1px solid rgba(254,218,22,.1);padding:1.5rem 5vw;z-index:99}
+.mobile-menu.open{display:flex}
+.mobile-menu a{color:var(--text-soft);text-decoration:none;font-size:1rem;font-weight:500;padding:.85rem 0;border-bottom:1px solid rgba(255,255,255,.05)}
+.mobile-menu a:last-child{border-bottom:none}
+.mobile-lang{padding:1rem 0 0}
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:130px 5vw 90px;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse 60% 50% at 50% 0%,rgba(138,26,26,.25) 0%,transparent 70%),radial-gradient(ellipse 40% 30% at 50% 100%,rgba(254,218,22,.06) 0%,transparent 70%)}
+.hero>*{position:relative;z-index:1}
+.hero-logo{width:130px;margin-bottom:1.8rem;filter:drop-shadow(0 4px 24px rgba(254,218,22,.2))}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(254,218,22,.1);border:1px solid rgba(254,218,22,.25);color:var(--yellow);padding:.35rem 1rem;border-radius:99px;font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:1.5rem}
+.hero-badge::before{content:"●";font-size:.5rem;animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+.hero h1{font-family:'Sora',sans-serif;font-size:clamp(2.6rem,7.5vw,5rem);font-weight:800;line-height:1.06;letter-spacing:-2px;color:var(--white);margin-bottom:.4rem}
+.hero h1 .accent{color:var(--yellow)}
+.hero-tagline{font-size:clamp(1rem,2vw,1.15rem);color:var(--text-soft);font-style:italic;margin-bottom:1.8rem}
+.hero-desc{max-width:540px;font-size:1rem;color:var(--text-soft);margin:0 auto 2.2rem;line-height:1.75}
+.hero-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-primary{display:inline-flex;align-items:center;gap:.5rem;background:var(--yellow);color:var(--red);padding:.9rem 2rem;border-radius:var(--radius-sm);font-size:1rem;font-weight:700;text-decoration:none;box-shadow:0 4px 28px rgba(254,218,22,.28);transition:background var(--tr),transform var(--tr)}
+.btn-primary:hover{background:var(--yellow-dark);color:var(--white);transform:translateY(-2px)}
+.btn-secondary{display:inline-flex;align-items:center;gap:.5rem;background:transparent;color:var(--white);padding:.9rem 2rem;border-radius:var(--radius-sm);font-size:1rem;font-weight:600;text-decoration:none;border:1.5px solid rgba(255,255,255,.16);transition:border-color var(--tr),background var(--tr)}
+.btn-secondary:hover{border-color:var(--yellow);background:var(--yellow-dim);color:var(--yellow)}
+.hero-note{margin-top:1.2rem;font-size:.78rem;color:var(--gray)}
+.stats{display:flex;justify-content:center;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05);background:var(--dark-2)}
+.stat{text-align:center;padding:2rem 3rem;border-right:1px solid rgba(255,255,255,.05);flex:1;min-width:140px}
+.stat:last-child{border-right:none}
+.stat-num{font-family:'Sora',sans-serif;font-size:2.2rem;font-weight:800;color:var(--yellow)}
+.stat-label{font-size:.8rem;color:var(--text-soft);margin-top:.15rem}
+section{padding:88px 5vw}
+.section-tag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--yellow);margin-bottom:.75rem}
+.section-title{font-family:'Sora',sans-serif;font-size:clamp(1.7rem,3.5vw,2.5rem);font-weight:800;letter-spacing:-.5px;color:var(--white);margin-bottom:.6rem;line-height:1.18}
+.section-sub{font-size:.97rem;color:var(--text-soft);line-height:1.75;max-width:600px}
+.about{background:var(--dark)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;max-width:1100px;margin:0 auto}
+.about-text{display:flex;flex-direction:column;gap:1.5rem}
+.about-block{background:var(--dark-3);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius);padding:1.6rem}
+.about-block h3{font-family:'Sora',sans-serif;font-size:1rem;font-weight:700;color:var(--yellow);margin-bottom:.6rem}
+.about-block p{font-size:.9rem;color:var(--text-soft);line-height:1.8}
+.feature-list{display:flex;flex-direction:column;gap:.9rem}
+.feature-item{display:flex;align-items:flex-start;gap:1rem;padding:1rem 1.1rem;background:var(--dark-2);border-radius:var(--radius-sm);border:1px solid rgba(255,255,255,.05);transition:border-color var(--tr)}
+.feature-item:hover{border-color:rgba(254,218,22,.25)}
+.feature-icon{width:38px;height:38px;border-radius:10px;background:rgba(138,26,26,.3);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.feature-text h4{font-family:'Sora',sans-serif;font-size:.88rem;font-weight:700;color:var(--white);margin-bottom:.2rem}
+.feature-text p{font-size:.78rem;color:var(--text-soft)}
+.app-section{background:var(--dark-2)}
+.app-inner{max-width:1100px;margin:0 auto}
+.app-intro{max-width:580px;margin-bottom:3rem}
+.phones-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;align-items:start}
+.phone-wrap{display:flex;flex-direction:column;align-items:center;gap:1rem}
+.phone-frame{position:relative;width:100%;max-width:220px;margin:0 auto}
+.phone-frame::before{content:"";display:block;position:absolute;inset:-8px;border-radius:36px;background:linear-gradient(135deg,rgba(254,218,22,.2),rgba(138,26,26,.2));z-index:0}
+.phone-frame img{position:relative;z-index:1;width:100%;border-radius:28px;display:block;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.phone-label{text-align:center}
+.phone-label h4{font-family:'Sora',sans-serif;font-size:.9rem;font-weight:700;color:var(--white);margin-bottom:.2rem}
+.phone-label p{font-size:.78rem;color:var(--text-soft);line-height:1.5}
+.download{background:var(--dark)}
+.download-card{max-width:860px;margin:2rem auto 0;background:var(--dark-3);border:1px solid rgba(254,218,22,.15);border-radius:20px;padding:2.5rem}
+.download-top{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-bottom:2rem}
+.dl-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.4rem;padding:1.4rem 1rem;border-radius:var(--radius);text-decoration:none;text-align:center;transition:transform var(--tr);border:none;cursor:pointer}
+.dl-btn-live{background:var(--yellow);color:var(--red);box-shadow:0 4px 24px rgba(254,218,22,.25)}
+.dl-btn-live:hover{transform:translateY(-3px)}
+.dl-btn-soon{background:var(--dark-4);color:var(--text-soft);border:1px solid rgba(255,255,255,.08)}
+.dl-btn-soon:hover{border-color:rgba(254,218,22,.3);transform:translateY(-2px)}
+.dl-store-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.4rem}
+.dl-btn-live .dl-store-icon{background:rgba(138,26,26,.2)}
+.dl-btn-soon .dl-store-icon{background:rgba(255,255,255,.05)}
+.dl-label{font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.75}
+.dl-name{font-family:'Sora',sans-serif;font-size:.98rem;font-weight:800}
+.dl-status-live{font-size:.62rem;background:var(--red);color:var(--white);padding:.15rem .6rem;border-radius:99px;font-weight:700}
+.dl-status-soon{font-size:.62rem;background:rgba(254,218,22,.15);color:var(--yellow);padding:.15rem .6rem;border-radius:99px;font-weight:600}
+.download-note{text-align:center;margin-top:.5rem;font-size:.75rem;color:var(--gray)}
+.download-steps{border-top:1px solid rgba(255,255,255,.06);padding-top:1.5rem;display:flex;flex-direction:column;gap:.9rem}
+.download-steps-title{font-family:'Sora',sans-serif;font-size:.88rem;font-weight:700;color:var(--white);margin-bottom:.2rem}
+.step{display:flex;align-items:flex-start;gap:1rem}
+.step-num{width:26px;height:26px;border-radius:50%;background:var(--red);color:var(--white);font-size:.7rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.step-text{font-size:.86rem;color:var(--text-soft);line-height:1.55}
+.step-text strong{color:var(--white)}
+.restaurant{background:var(--dark-2)}
+.plans-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;max-width:1100px;margin:2.5rem auto 0}
+.plan-card{background:var(--dark-3);border:1px solid rgba(255,255,255,.07);border-radius:var(--radius);padding:1.5rem;transition:border-color var(--tr),transform var(--tr);display:flex;flex-direction:column}
+.plan-card:hover{border-color:rgba(254,218,22,.3);transform:translateY(-4px)}
+.plan-card.hot{border-color:var(--yellow);background:linear-gradient(160deg,var(--dark-3),rgba(138,26,26,.1))}
+.plan-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:.8rem}
+.plan-icon-free{background:rgba(120,120,120,.2)}
+.plan-icon-silver{background:rgba(192,192,192,.15)}
+.plan-icon-gold{background:rgba(254,218,22,.15)}
+.plan-icon-platinum{background:rgba(138,26,26,.2)}
+.plan-badge{font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--yellow);margin-bottom:.2rem}
+.plan-name{font-family:'Sora',sans-serif;font-size:1.25rem;font-weight:800;color:var(--white);margin-bottom:.4rem}
+.plan-desc{font-size:.8rem;color:var(--text-soft);line-height:1.55;margin-bottom:.8rem;flex:1}
+.plan-divider{border:none;border-top:1px solid rgba(255,255,255,.06);margin:.6rem 0}
+.plan-features{list-style:none;display:flex;flex-direction:column;gap:.45rem}
+.plan-features li{font-size:.76rem;color:var(--text-soft);display:flex;align-items:flex-start;gap:.5rem;line-height:1.4}
+.plan-features li .check{color:var(--yellow);font-weight:800;flex-shrink:0;font-size:.8rem}
+.plan-features li .cross{color:#c0392b;flex-shrink:0;font-size:.8rem}
+.plan-features li .detail{color:var(--gray);font-size:.68rem;display:block}
+.plan-cta{margin-top:1rem;display:block;text-align:center;background:var(--yellow);color:var(--red);padding:.65rem 1rem;border-radius:var(--radius-sm);font-size:.8rem;font-weight:700;text-decoration:none;transition:background var(--tr)}
+.plan-cta:hover{background:var(--yellow-dark);color:var(--white)}
+.plan-cta-outline{margin-top:1rem;display:block;text-align:center;background:transparent;color:var(--yellow);padding:.65rem 1rem;border-radius:var(--radius-sm);font-size:.8rem;font-weight:700;text-decoration:none;border:1px solid rgba(254,218,22,.3);transition:background var(--tr)}
+.plan-cta-outline:hover{background:var(--yellow-dim)}
+.expansion{background:var(--dark)}
+.journey-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2.5rem;max-width:900px}
+.journey-card{background:var(--dark-3);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius);padding:1.8rem 1.5rem;text-align:center;transition:border-color var(--tr),transform var(--tr)}
+.journey-card:hover{border-color:rgba(254,218,22,.2);transform:translateY(-3px)}
+.journey-card.active{border-color:var(--yellow);background:linear-gradient(160deg,var(--dark-3),rgba(138,26,26,.1))}
+.journey-icon{font-size:2rem;margin-bottom:.8rem}
+.journey-phase{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--yellow);margin-bottom:.3rem}
+.journey-title{font-family:'Sora',sans-serif;font-size:1.1rem;font-weight:800;color:var(--white);margin-bottom:.5rem}
+.journey-desc{font-size:.8rem;color:var(--text-soft);line-height:1.6}
+.journey-status{display:inline-block;margin-top:.8rem;font-size:.65rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.2rem .7rem;border-radius:99px}
+.status-live{background:rgba(254,218,22,.15);color:var(--yellow)}
+.status-next{background:rgba(255,255,255,.06);color:var(--gray)}
+.contact{background:var(--dark-2)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;max-width:1000px;margin:2.5rem auto 0;align-items:start}
+.contact-channels{display:flex;flex-direction:column;gap:.85rem}
+.contact-item{display:flex;align-items:center;gap:1rem;padding:.9rem 1.2rem;background:var(--dark-3);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius-sm);text-decoration:none;transition:border-color var(--tr)}
+.contact-item:hover{border-color:var(--yellow)}
+.contact-icon{font-size:1.2rem}
+.contact-label{font-size:.68rem;color:var(--gray);text-transform:uppercase;letter-spacing:.06em}
+.contact-value{font-size:.9rem;color:var(--white);font-weight:500}
+.register-box{background:var(--dark-3);border:1px solid rgba(254,218,22,.18);border-radius:var(--radius);padding:1.6rem;margin-top:1.2rem;text-align:center}
+.register-box p{font-size:.85rem;color:var(--text-soft);margin-bottom:1rem;line-height:1.65}
+.btn-register{display:inline-flex;align-items:center;gap:.5rem;background:var(--yellow);color:var(--red);padding:.85rem 1.8rem;border-radius:var(--radius-sm);font-size:.95rem;font-weight:700;text-decoration:none;transition:background var(--tr)}
+.btn-register:hover{background:var(--yellow-dark);color:var(--white)}
+.contact-form{display:flex;flex-direction:column;gap:.9rem}
+.form-head{font-family:'Sora',sans-serif;font-size:1rem;font-weight:700;color:var(--white);margin-bottom:.2rem}
+.form-group{display:flex;flex-direction:column;gap:.35rem}
+.form-group label{font-size:.78rem;color:var(--text-soft);font-weight:500}
+.form-group input,.form-group textarea,.form-group select{background:var(--dark-3);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius-sm);padding:.72rem 1rem;color:var(--white);font-size:.88rem;font-family:inherit;transition:border-color var(--tr);outline:none;width:100%}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--yellow)}
+.form-group textarea{resize:vertical;min-height:95px}
+.form-group select option{background:var(--dark-3)}
+.btn-submit{background:var(--red);color:var(--white);padding:.85rem 1.5rem;border-radius:var(--radius-sm);font-size:.95rem;font-weight:700;border:none;cursor:pointer;font-family:inherit;transition:background var(--tr);width:100%}
+.btn-submit:hover{background:var(--red-light)}
+.form-success{display:none;text-align:center;padding:1.5rem;background:rgba(254,218,22,.08);border:1px solid rgba(254,218,22,.2);border-radius:var(--radius-sm)}
+.form-success p{color:var(--yellow);font-weight:600;font-size:.95rem}
+footer{background:var(--dark);border-top:1px solid rgba(254,218,22,.08);padding:2rem 5vw}
+.footer-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;max-width:1100px;margin:0 auto}
+.footer-logo img{height:30px}
+.footer-links{display:flex;gap:1.5rem;flex-wrap:wrap}
+.footer-links a{font-size:.8rem;color:var(--gray);text-decoration:none;transition:color var(--tr)}
+.footer-links a:hover{color:var(--yellow)}
+.social-links{display:flex;gap:.6rem}
+.social-link{width:34px;height:34px;border-radius:8px;background:var(--dark-3);border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-size:.82rem;text-decoration:none;color:var(--text-soft);transition:border-color var(--tr),color var(--tr)}
+.social-link:hover{border-color:var(--yellow);color:var(--yellow)}
+.footer-copy{font-size:.75rem;color:var(--gray);width:100%;text-align:center;margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.04)}
+@media(max-width:900px){.about-grid{grid-template-columns:1fr}.plans-grid{grid-template-columns:1fr 1fr}.contact-grid{grid-template-columns:1fr}.download-top{grid-template-columns:1fr}.journey-grid{grid-template-columns:1fr}.phones-grid{grid-template-columns:1fr;max-width:280px;margin:0 auto}.nav-links{display:none}.hamburger{display:flex}.nav-cta{display:none}.lang-switch{display:none}}
+@media(max-width:640px){.plans-grid{grid-template-columns:1fr}.stat{padding:1.5rem 1rem}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  emailjs.init("MmZfLpfxCdS7kvaUc");
+</script>
+</head>
+<body>
+<nav>
+<a href="#" class="nav-logo"><img src="logo_yellow.png" alt="HinKhar" /></a>
+<ul class="nav-links">
+<li><a href="#about"><span data-lang="en">About</span><span data-lang="mm">အကြောင်း</span></a></li>
+<li><a href="#app">App</a></li>
+<li><a href="#download"><span data-lang="en">Download</span><span data-lang="mm">ဒေါင်းလုဒ်</span></a></li>
+<li><a href="#restaurant"><span data-lang="en">For Restaurants</span><span data-lang="mm">ဆိုင်ရှင်များ</span></a></li>
+<li><a href="#contact"><span data-lang="en">Contact</span><span data-lang="mm">ဆက်သွယ်ရန်</span></a></li>
+</ul>
+<div class="nav-right">
+<div class="lang-switch"><button class="lang-btn active" onclick="setLang('en')">EN</button><button class="lang-btn" onclick="setLang('mm')">မြန်မာ</button></div>
+<a href="#download" class="nav-cta">⬇ <span data-lang="en">Download</span><span data-lang="mm">ဒေါင်းလုဒ်</span></a>
+</div>
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+<a href="#about" onclick="toggleMenu()"><span data-lang="en">About</span><span data-lang="mm">အကြောင်း</span></a>
+<a href="#app" onclick="toggleMenu()">App</a>
+<a href="#download" onclick="toggleMenu()"><span data-lang="en">Download</span><span data-lang="mm">ဒေါင်းလုဒ်</span></a>
+<a href="#restaurant" onclick="toggleMenu()"><span data-lang="en">For Restaurants</span><span data-lang="mm">ဆိုင်ရှင်များ</span></a>
+<a href="#contact" onclick="toggleMenu()"><span data-lang="en">Contact</span><span data-lang="mm">ဆက်သွယ်ရန်</span></a>
+<div class="mobile-lang"><div class="lang-switch"><button class="lang-btn active" onclick="setLang('en')">EN</button><button class="lang-btn" onclick="setLang('mm')">မြ</button></div></div>
+</div>
+
+<section class="hero">
+<div class="hero-bg"></div>
+<img src="logo_yellow.png" alt="HinKhar Logo" class="hero-logo" />
+<div class="hero-badge"><span data-lang="en">Now in Mandalay · Launching 2026</span><span data-lang="mm">မန္တလေးမှ စတင်သည် · ၂၀၂၆</span></div>
+<h1>Your Next <span class="accent">Bite,</span><br/>My Guide</h1>
+<p class="hero-tagline"><span data-lang="en">Myanmar's Food Discovery App</span><span data-lang="mm">မြန်မာနိုင်ငံ၏ အကောင်းဆုံး အစားအသောက် ရှာဖွေရေး App</span></p>
+<p class="hero-desc"><span data-lang="en">Discover restaurants, browse menus, and find the best food near you — all in one trusted app. No Google account needed to download.</span><span data-lang="mm">မိမိနေရာနှင့် နီးစပ်သော စားသောက်ဆိုင်များ ရှာဖွေပါ၊ Menu များ ကြည့်ရှုပါ — ယုံကြည် စိတ်ချရသော App တစ်ခုဖြစ်သည်။ Google account မလိုဘဲ ဒေါင်းလုဒ်လုပ်နိုင်သည်။</span></p>
+<div class="hero-actions">
+<a href="#download" class="btn-primary">⬇ <span data-lang="en">Download HinKhar</span><span data-lang="mm">HinKhar ဒေါင်းလုဒ်</span></a>
+<a id="hero-register-btn" href="#" target="_blank" class="btn-secondary"><span data-lang="en">Register Your Restaurant</span><span data-lang="mm">ဆိုင်မှတ်ပုံတင်ရန်</span></a>
+</div>
+<p class="hero-note"><span data-lang="en">Free · Android & iOS · Direct APK download available · No Google account needed</span><span data-lang="mm">အခမဲ့ Android & iOS , APK တိုက်ရိုက် ဒေါင်းလုဒ်လုပ်နိုင်သည် · Google account မလိုပါ</span></p>
+</section>
+
+<div class="stats">
+<div class="stat"><div class="stat-num" id="stat-restaurants"></div><div class="stat-label"><span data-lang="en">Restaurants Listed</span><span data-lang="mm">စားသောက်ဆိုင်</span></div></div>
+<div class="stat"><div class="stat-num" id="stat-plans"></div><div class="stat-label"><span data-lang="en">Subscription Plans</span><span data-lang="mm">Plan ရွေးချယ်မှု</span></div></div>
+<div class="stat"><div class="stat-num" id="stat-city"></div><div class="stat-label"><span data-lang="en">Starting in Mandalay</span><span data-lang="mm">မန္တလေးမှ စတင်</span></div></div>
+<div class="stat"><div class="stat-num" id="stat-download"></div><div class="stat-label"><span data-lang="en">To Download</span><span data-lang="mm">အခမဲ့ ဒေါင်းလုဒ်</span></div></div>
+</div>
+
+<section class="about" id="about">
+<div class="about-grid">
+<div class="about-text">
+<div>
+<span class="section-tag"><span data-lang="en">About HinKhar</span><span data-lang="mm">HinKhar အကြောင်း</span></span>
+<h2 class="section-title"><span data-lang="en">To Discover Food,<br/>One Trusted Place</span><span data-lang="mm">အစားအသောက် ရှာဖွေရန်<br/>ယုံကြည်စိတ်ချရသော လမ်းညွှန်</span></h2>
+</div>
+<div class="about-block">
+<h3>🎯 <span data-lang="en">Mission</span><span data-lang="mm">ရည်မှန်းချက်</span></h3>
+<p><span data-lang="en">To make restaurant discovery in Myanmar easier, more trusted, and accessible for everyone.</span><span data-lang="mm">မြန်မာနိုင်ငံတွင် စားသောက်ဆိုင် ရှာဖွေခြင်းကို လွယ်ကူ၊ ယုံကြည်စိတ်ချရပြီး လူတိုင်း အသုံးပြုနိုင် စေရန်။</span></p>
+</div>
+<div class="about-block">
+<h3>🌟 <span data-lang="en">Vision</span><span data-lang="mm">မျှော်မှန်းချက်</span></h3>
+<p><span data-lang="en">To become Myanmar's most trusted food directory platform, helping users find better food and helping local restaurants grow.</span><span data-lang="mm">မြန်မာနိုင်ငံ၏ အယုံကြည်ရဆုံး Food Directory Platform ဖြစ်လာပြီး သုံးစွဲသူများ အကောင်းဆုံးသော အစားအသောက်များ ရှာဖွေနိုင်ရန်နှင့် ဒေသခံ စားသောက်ဆိုင်များ ကြီးထွားရန်အလို့ငှာ ကူညီဆောင်ရွက်ရန်။</span></p>
+</div>
+</div>
+<div class="feature-list">
+<div class="feature-item"><div class="feature-icon">🍽</div><div class="feature-text"><h4><span data-lang="en">Browse Restaurants & Menus</span><span data-lang="mm">စားသောက်ဆိုင်နှင့် Menu ကြည့်ရှုနိုင်</span></h4><p><span data-lang="en">Structured, reliable data — cuisine, hours, menus</span><span data-lang="mm">ဆိုင်အကြောင်း ၊ ဖွင့်ချိန်၊ Menu အပြည့်အစုံ</span></p></div></div>
+<div class="feature-item"><div class="feature-icon">📍</div><div class="feature-text"><h4><span data-lang="en">Find Locations Near You</span><span data-lang="mm">အနီးနားရှိ ဆိုင်များ ရှာဖွေနိုင်</span></h4><p><span data-lang="en">No more fragmented social meida posts or outdated listings</span><span data-lang="mm">social media များ ရှာမနေဘဲ တိကျသောနေရာ သိနိုင်သည်</span></p></div></div>
+<div class="feature-item"><div class="feature-icon">🏷</div><div class="feature-text"><h4><span data-lang="en">Promotions & Special Offers</span><span data-lang="mm">Promotion နှင့် လျှော့ဈေးများ</span></h4><p><span data-lang="en">Discover deals and offers from restaurants </span><span data-lang="mm"> ဆိုင်များ၏ လျှော့ဈေးနှင့် ကမ်းလှမ်းချက်များ သိနိုင်သည်</span></p></div></div>
+<div class="feature-item"><div class="feature-icon">⭐</div><div class="feature-text"><h4><span data-lang="en">Verified Listings You Can Trust</span><span data-lang="mm">စစ်ဆေးပြီးသော ယုံကြည်စိတ်ချရသော ဆိုင်များ</span></h4><p><span data-lang="en">Verified restaurant information — always up to date</span><span data-lang="mm">အမြဲတမ်း update ပြုလုပ်ထားသော တိကျသည့် ဆိုင်အချက်အလက်</span></p></div></div>
+<div class="feature-item"><div class="feature-icon">📱</div><div class="feature-text"><h4><span data-lang="en">No Google Account Needed</span><span data-lang="mm">Google Account မလိုဘဲ ဒေါင်းလုဒ်လုပ်နိုင်</span></h4><p><span data-lang="en">Download APK directly — works for everyone </span><span data-lang="mm">APK တိုက်ရိုက် ဒေါင်းလုဒ်နိုင် — လူတိုင်းအတွက်</span></p></div></div>
+</div>
+</div>
+</section>
+
+<section class="app-section" id="app">
+<div class="app-inner">
+<div class="app-intro">
+<span class="section-tag"><span data-lang="en">See the App</span><span data-lang="mm">App အကြောင်း </span></span>
+<h2 class="section-title"><span data-lang="en">Built for Myanmar.<br/>Easy to use.</span><span data-lang="mm">မြန်မာနိုင်ငံအတွက်<br/>အလွယ်တကူသုံးနိုင်သော App</span></h2>
+<p class="section-sub"><span data-lang="en">HinKhar is a fully working app — not a concept. Browse real restaurants, view full menus, check opening hours, and call with one tap.</span><span data-lang="mm">HinKhar သည် လက်ရှိ အသုံးပြုနိုင်သော App ဖြစ်သည်။ စစ်မှန်သော ဆိုင်များ ကြည့်ရှုပြီး Menu အပြည့်၊ ဖွင့်ချိန်စစ်ဆေး၍ တစ်ချက်နှိပ်ရုံဖြင့် ဆက်သွယ်နိုင်သည်။</span></p>
+</div>
+<div class="phones-grid">
+<div class="phone-wrap"><div class="phone-frame"><img src="app_home.jpg" alt="HinKhar Home" /></div><div class="phone-label"><h4><span data-lang="en">Featured Restaurants</span><span data-lang="mm">အကောင်းဆုံး ဆိုင်များ</span></h4><p><span data-lang="en">Browse top restaurants with ratings and categories</span><span data-lang="mm">Rating နှင့် အမျိုးအစားဖြင့် ဆိုင်များ ကြည့်ရှုနိုင်</span></p></div></div>
+<div class="phone-wrap"><div class="phone-frame"><img src="app_detail.jpg" alt="Restaurant Detail" /></div><div class="phone-label"><h4><span data-lang="en">Restaurant Detail</span><span data-lang="mm">ဆိုင်အချက်အလက်</span></h4><p><span data-lang="en">Full info — about, contact, hours, one-tap call</span><span data-lang="mm">ဆိုင်အကြောင်း၊ ဖုန်း၊ ဖွင့်ချိန် အပြည့်ကြည့်နိုင်</span></p></div></div>
+<div class="phone-wrap"><div class="phone-frame"><img src="app_menu.jpg" alt="Menu View" /></div><div class="phone-label"><h4><span data-lang="en">Full Menu with Photos</span><span data-lang="mm">ဓာတ်ပုံနှင့် Menu အပြည့်</span></h4><p><span data-lang="en">Browse menus with photos and signature dish highlights</span><span data-lang="mm">ဓာတ်ပုံနှင့်အတူ Menu နှင့် Signature Dish ကြည့်ရှုနိုင်</span></p></div></div>
+</div>
+</div>
+</section>
+
+<section class="download" id="download">
+<div style="max-width:860px;margin:0 auto;">
+<span class="section-tag"><span data-lang="en">Download</span><span data-lang="mm">ဒေါင်းလုဒ်</span></span>
+<h2 class="section-title"><span data-lang="en">Get HinKhar on your phone</span><span data-lang="mm">HinKhar ကို ဖုန်းတွင် ဒေါင်းလုဒ်ရယူပါ</span></h2>
+<p class="section-sub"><span data-lang="en">App Store, Google Play, and direct APK download are available.</span><span data-lang="mm">App Store၊ Google Play နှင့် APK တိုက်ရိုက် ဒေါင်းလုဒ် ရရှိနိုင်ပါသည်။</span></p>
+</div>
+<div class="download-card">
+<div class="download-top">
+<a id="dl-appstore" href="#" target="_blank" class="dl-btn dl-btn-live"><div class="dl-store-icon">🛍</div><span class="dl-label"><span data-lang="en">Download on the</span><span data-lang="mm">ဒေါင်းလုဒ်ရယူရန်</span></span><span class="dl-name">App Store</span><span class="dl-status-live">✓ <span data-lang="en">Available Now</span><span data-lang="mm">ယခု ရနိုင်ပြီ</span></span></a>
+<a id="dl-playstore" href="#" target="_blank" rel="noopener" class="dl-btn dl-btn-live"><div class="dl-store-icon">▶</div><span class="dl-label"><span data-lang="en">Get it on</span><span data-lang="mm">ဒေါင်းလုဒ်ယူရန်</span></span><span class="dl-name">Google Play</span><span class="dl-status-live">✓ <span data-lang="en">Available Now</span><span data-lang="mm">ယခု ရနိုင်ပြီ</span></span></a>
+<a id="dl-apk" href="#" class="dl-btn dl-btn-soon"><div class="dl-store-icon">⬇</div><span class="dl-label"><span data-lang="en">Direct Download</span><span data-lang="mm">တိုက်ရိုက် ဒေါင်းလုဒ်</span></span><span class="dl-name">APK File</span><<span class="dl-status-live">✓ <span data-lang="en">Available Now</span><span data-lang="mm">ယခု ရနိုင်ပြီ</span></span></a>
+</div>
+<p class="download-note"><span data-lang="en">Available now on Google Play and the App Store. Direct APK download is coming soon.</span><span data-lang="mm">Google Play နှင့် App Store တွင် ယခုရရှိနိုင်ပြီး APK တိုက်ရိုက်ဒေါင်းလုဒ်ကို မကြာမီ ရရှိနိုင်မည်ဖြစ်သည်။</span></p>
+<div class="download-steps" style="margin-top:1.5rem;">
+<div class="download-steps-title">📲 <span data-lang="en">How to install APK</span><span data-lang="mm">APK ထည့်သွင်းနည်း</span></div>
+<div class="step"><div class="step-num">1</div><div class="step-text"><span data-lang="en"><strong>Tap "APK File" download button</strong> to get the file</span><span data-lang="mm"><strong>APK File</strong> ဒေါင်းလုဒ် ခလုတ် နှိပ်ပြီး ဖိုင် ရယူပါ။</span></div></div>
+<div class="step"><div class="step-num">2</div><div class="step-text"><span data-lang="en"><strong>Allow installation from unknown sources</strong> in your phone settings</span><span data-lang="mm">Phone Settings တွင် <strong>"Unknown Sources" ကို ခွင့်ပြုပါ။</strong></span></div></div>
+<div class="step"><div class="step-num">3</div><div class="step-text"><span data-lang="en"><strong>Open the downloaded file</strong> and tap Install — done!</span><span data-lang="mm">ဒေါင်းလုဒ်ဆင်းထားသော ဖိုင်ကို ဖွင့်ပြီး <strong>Install နှိပ်ပါ</strong> — ပြီးပါပြီ!</span></div></div>
+</div>
+</div>
+</section>
+<section class="restaurant" id="restaurant">
+<div style="max-width:1100px;margin:0 auto;">
+<span class="section-tag"><span data-lang="en">For Restaurant Owners</span><span data-lang="mm">ဆိုင်ရှင်များ အတွက်</span></span>
+<h2 class="section-title"><span data-lang="en">List your restaurant<br/>on HinKhar</span><span data-lang="mm">မိမိဆိုင်ကို HinKhar<br/>တွင် တင်ပါ</span></h2>
+<p class="section-sub"><span data-lang="en">Choose the plan that fits your restaurant. Contact us to find out more about pricing and get started today.</span><span data-lang="mm">မိမိဆိုင်နှင့် သင့်တော်သော Plan ကို ရွေးချယ်ပါ။ ဈေးနှုန်း အသေးစိတ်သိရှိရန် ဆက်သွယ်ပါ။</span></p>
+<div class="plans-grid">
+
+<div class="plan-card">
+<div class="plan-icon plan-icon-free">👤</div>
+<div class="plan-badge">Basic</div>
+<div class="plan-name"><span data-lang="en">Free</span><span data-lang="mm">Free</span></div>
+<div class="plan-desc"><span data-lang="en">Basic access to core features, suitable for testing and small restaurants.</span><span data-lang="mm">အဓိက Feature များ အသုံးပြုနိုင်သည်။ ငယ်သော ဆိုင်များ နှင့် စမ်းသပ်မှုအတွက် သင့်တော်သည်။</span></div>
+<hr class="plan-divider"/>
+<ul class="plan-features">
+<li><span class="check">✓</span><span><span data-lang="en">Analytics <span class="detail">Basic Views</span></span><span data-lang="mm">Analytics <span class="detail">အခြေခံ</span></span></span></li>
+<li><span class="check">✓</span><span><span data-lang="en">Claim Your Listing</span><span data-lang="mm">ဆိုင်စာရင်း ပိုင်ဆိုင်ခြင်း</span></span></li>
+<li><span class="cross">✗</span><span><span data-lang="en">Dedicated Support</span><span data-lang="mm">သီးသန့် ထောက်ပံ့မှု</span></span></li>
+<li><span class="check">✓</span><span><span data-lang="en">Listing Updates <span class="detail">3/Quarter (Slow)</span></span><span data-lang="mm">အချက်အလက် ပြင်ဆင်ခြင်း <span class="detail">၃ လတစ်ကြိမ်</span></span></span></li>
+<li><span class="check">✓</span><span><span data-lang="en">Menu Management <span class="detail">10 items</span></span><span data-lang="mm">Menu စီမံခြင်း <span class="detail">၁၀ ခု</span></span></span></li>
+<li><span class="check">✓</span><span><span data-lang="en">One-Tap Call Button</span><span data-lang="mm">တစ်ချက်နှိပ် ဖုန်းခေါ်ဆိုခြင်း</span></span></li>
+<li><span class="check">✓</span><span><span data-lang="en">Photo Management <span class="detail">5 photos</span></span><span data-lang="mm">ဓာတ်ပုံ စီမံခြင်း <span class="detail">၅ ပုံ</span></span></span></li>
+<li><span class="cross">✗</span><span><span data-lang="en">Promotions & Deals</span><span data-lang="mm">Promotion နှင့် လျှော့ဈေး</span></span></li>
+<li><span class="cross">✗</span><span><span data-lang="en">Social Media Links</span><span data-lang="mm">Social Media Link</span></span></li>
+<li><span class="cross">✗</span><span><span data-lang="en">Verified Badge</span><span data-lang="mm">အတည်ပြုချက် Badge</span></span></li>
+</ul>
+<a id="plan-free-btn" href="#" target="_blank" class="plan-cta-outline"><span data-lang="en">Get Started Free</span><span data-lang="mm">အခမဲ့ စတင်ပါ</span></a>
+</div>
+
+<div class="plan-card">
+<div class="plan-icon plan-icon-silver">🥈</div>
+<div class="plan-badge">Silver</div>
+<div class="plan-name">Silver</div>
+<div class="plan-desc"><span data-lang="en">Includes essential features with priority support.</span><span data-lang="mm">အဓိက Feature များနှင့် Priority Support ပါဝင်သည်။</span></div>
+<hr class="plan-divider"/>
+<ul class="plan-features">
+<li><span class="check">✓</span><span><span data-lang="en">Analytics <span class="detail">Basic Dashboard</span></span><span data-lang="mm">Analytics <span class="detail">Dashboard</span></span></span></li>
+<li><span class="check">✓</span><span><span data-lang="en">Claim Your Listing</span><span data-lang="mm">ဆိုင်စာရင်း ပိုင်ဆိုင်ခြင်း</span></span></li>
+<li><span class="check">✓</span><span><span data-lang="en">Dedicated Support <span class="detail">Add-on +10k</span></span><span data-lang="mm">သီးသန့် ထောက်ပံ့မှု <span class="detail">Add-on +10k</span></span></span></li>
+<li><span class="check">✓</span><span><span data-lang="en">Listing Updates <span class="detail">Unlimited Instant</span></span><span data-lang="mm">အချက်အလက် ပြင်ဆင်ခြင်း <span class="detail">ကန့်သတ်မဲ့</span></span></span></li>
+<li><span class="check">✓</span><span><span data-lang="en">Menu Management <span class="detail">Unlimited</span></span><span data-lang="mm">Menu စီမံခြင်း <span class="detail">ကန့်သတ်မဲ့</span></span></span></li>
+<li><span class="check">✓</span><span><span data-lang="en">One-Tap Call Button</span><span data-lang="mm">တစ်ချက်နှိပ် ဖုန်းခေါ်ဆိုခြင်း</span></span></li>
+<li><span class="check">✓</span><span><span data-lang="en">Photo Management <span class="detail">15 photos</span></span><span data-lang="mm">ဓာတ်ပုံ စီမံခြင်း <span class="detail">၁၅ ပုံ</span></span></span></li>
+<li><span class="check">✓</span><span><span data-lang="en">Promotions & Deals <span class="detail">3</span></span><span data-lang="mm">Promotion <span class="detail">၃ ခု</span></span></span></li>
+<li><span class="check">✓</span><span><span data-lang="en">Social Media Links</span><span data-lang="mm">Social Media Link</span></span></li>
+<li><span class="check">✓</span><span><span data-lang="en">Verified Badge</span><span data-lang="mm">အတည်ပြုချက် Badge</span></span></li>
+</ul>
+<a href="#contact" class="plan-cta-outline"><span data-lang="en">Enquire Now</span><span data-lang="mm">စုံစမ်းပါ</span></a>
+</div>
+
+<div class="plan-card hot">
+<div class="plan-icon plan-icon-gold">🥇</div>
+<div class="plan-badge">⭐ <span data-lang="en">Most Popular</span><span data-lang="mm">အရေးကြီးဆုံး</span></div>
+<div class="plan-name">Gold</div>
+<div class="plan-desc"><span data-lang="en">Full access to premium features and analytics.</span><span data-lang="mm">Premium Feature နှင့် Analytics အပြည့် ရရှိနိုင်သည်။</span></div>
+<hr class="plan-divider"/>
+<ul class="plan-features">
+<li><span class="check">✓</span><span><span data-lang="en">Analytics <span class="detail">Advanced Suite</span></span><span data-lang="mm">Analytics <span class="detail">အဆင့်မြင့်</span></span></span></li>
+<li><span class="check">✓</span><span><span data-lang="en">Claim Your Listing</span><span data-lang="mm">ဆိုင်စာရင်း ပိုင်ဆိုင်ခြင်း</span></span></li>
+<li><span class="check">✓</span><span><span data-lang="en">Dedicated Support <span class="detail">Add-on +10k</span></span><span data-lang="mm">သီးသန့် ထောက်ပံ့မှု <span class="detail">Add-on +10k</span></span></span></li>
+<li><span class="check">✓</span><span><span data-lang="en">Listing Updates <span class="detail">Unlimited Instant</span></span><span data-lang="mm">အချက်အလက် ပြင်ဆင်ခြင်း <span class="detail">ကန့်သတ်မဲ့</span></span></span></li>
+<li><span class="check">✓</span><span><span data-lang="en">Menu Management <span class="detail">Unlimited + Signature Dish</span></span><span data-lang="mm">Menu <span class="detail">ကန့်သတ်မဲ့ + Signature</span></span></span></li>
+<li><span class="check">✓</span><span><span data-lang="en">One-Tap Call Button</span><span data-lang="mm">တစ်ချက်နှိပ် ဖုန်းခေါ်ဆိုခြင်း</span></span></li>
+<li><span class="check">✓</span><span><span data-lang="en">Photo Management <span class="detail">Unlimited</span></span><span data-lang="mm">ဓာတ်ပုံ <span class="detail">ကန့်သတ်မဲ့</span></span></span></li>
+<li><span class="check">✓</span><span><span data-lang="en">Promotions & Deals <span class="detail">Unlimited</span></span><span data-lang="mm">Promotion <span class="detail">ကန့်သတ်မဲ့</span></span></span></li>
+<li><span class="check">✓</span><span><span data-lang="en">Social Media Links</span><span data-lang="mm">Social Media Link</span></span></li>
+<li><span class="check">✓</span><span><span data-lang="en">Verified Badge <span class="detail">Gold Premium</span></span><span data-lang="mm">Gold Premium Badge</span></span></li>
+</ul>
+<a href="#contact" class="plan-cta"><span data-lang="en">Enquire Now</span><span data-lang="mm">စုံစမ်းပါ</span></a>
+</div>
+
+<div class="plan-card">
+<div class="plan-icon plan-icon-platinum">🏆</div>
+<div class="plan-badge">Platinum</div>
+<div class="plan-name">Platinum</div>
+<div class="plan-desc"><span data-lang="en">Custom plan with dedicated support and enterprise-level features.</span><span data-lang="mm">သီးသန့် ထောက်ပံ့မှုနှင့် Enterprise Feature များပါသော Custom Plan ဖြစ်သည်။</span></div>
+<hr class="plan-divider"/>
+<ul class="plan-features">
+<li><span class="check">✓</span><span><span data-lang="en">Analytics <span class="detail">Group Analytics</span></span><span data-lang="mm">Analytics <span class="detail">Group</span></span></span></li>
+<li><span class="check">✓</span><span><span data-lang="en">Claim Your Listing</span><span data-lang="mm">ဆိုင်စာရင်း ပိုင်ဆိုင်ခြင်း</span></span></li>
+<li><span class="check">✓</span><span><span data-lang="en">Dedicated Support <span class="detail">Included</span></span><span data-lang="mm">သီးသန့် ထောက်ပံ့မှု <span class="detail">ပါဝင်သည်</span></span></span></li>
+<li><span class="check">✓</span><span><span data-lang="en">Listing Updates <span class="detail">Bulk Updates</span></span><span data-lang="mm">အချက်အလက် <span class="detail">Bulk Updates</span></span></span></li>
+<li><span class="check">✓</span><span><span data-lang="en">Menu Management <span class="detail">Unlimited + Multi-Branch</span></span><span data-lang="mm">Menu <span class="detail">ကန့်သတ်မဲ့ + Multi-Branch</span></span></span></li>
+<li><span class="check">✓</span><span><span data-lang="en">One-Tap Call Button</span><span data-lang="mm">တစ်ချက်နှိပ် ဖုန်းခေါ်ဆိုခြင်း</span></span></li>
+<li><span class="check">✓</span><span><span data-lang="en">Photo Management <span class="detail">Unlimited</span></span><span data-lang="mm">ဓာတ်ပုံ <span class="detail">ကန့်သတ်မဲ့</span></span></span></li>
+<li><span class="check">✓</span><span><span data-lang="en">Promotions & Deals <span class="detail">Unlimited</span></span><span data-lang="mm">Promotion <span class="detail">ကန့်သတ်မဲ့</span></span></span></li>
+<li><span class="check">✓</span><span><span data-lang="en">Social Media Links</span><span data-lang="mm">Social Media Link</span></span></li>
+<li><span class="check">✓</span><span><span data-lang="en">Verified Badge</span><span data-lang="mm">အတည်ပြုချက် Badge</span></span></li>
+</ul>
+<a href="#contact" class="plan-cta-outline"><span data-lang="en">Contact Us</span><span data-lang="mm">ဆက်သွယ်ပါ</span></a>
+</div>
+
+</div>
+<p style="margin-top:1.5rem;text-align:center;font-size:.82rem;color:var(--gray);"><span data-lang="en">All paid plans available in 3, 6, 9, and 12-month terms. Contact us to discuss pricing.</span><span data-lang="mm">ပေးဆောင်ရသော Plan များကို ၃ လ၊ ၆ လ၊ ၉ လ၊ ၁၂ လ သက်တမ်းဖြင့် ရရှိနိုင်သည်။ ဈေးနှုန်းအတွက် ဆက်သွယ်ပါ။</span></p>
+</div>
+</section>
+
+<section class="expansion" id="expansion">
+<div style="max-width:900px;margin:0 auto;">
+<span class="section-tag"><span data-lang="en">Our Journey</span><span data-lang="mm">ကျွန်ုပ်တို့၏ ခရီးစဉ်</span></span>
+<h2 class="section-title"><span data-lang="en">Starting Mandalay,<br/>Going National</span><span data-lang="mm">မန္တလေးမှ စတင်ကာ<br/>နိုင်ငံ တစ်ဝန်း</span></h2>
+<p class="section-sub"><span data-lang="en">HinKhar is built for all of Myanmar — one city at a time, starting where food culture runs deepest.</span><span data-lang="mm">HinKhar သည် မြန်မာနိုင်ငံ တစ်ဝန်းလုံးအတွက် တည်ဆောက်ထားသည်။ မြို့တစ်မြို့ပြီး တစ်မြို့ တိုးချဲ့သွားမည်ဖြစ်သည်။</span></p>
+<div class="journey-grid">
+<div class="journey-card active">
+<div class="journey-icon">🏙</div>
+<div class="journey-phase"><span data-lang="en">Where We Are Now</span><span data-lang="mm">လက်ရှိ ဆောင်ရွက်နေသောနေရာ</span></div>
+<div class="journey-title">Mandalay · မန္တလေး</div>
+<div class="journey-desc"><span data-lang="en">Our home city and starting point — where Myanmar's richest food culture meets our first chapter.</span><span data-lang="mm">ကျွန်ုပ်တို့၏ ဇာတိမြို့နှင့် စတင်သောနေရာ — မြန်မာ့ အစားအသောက် ယဉ်ကျေးမှု ပေါကြွယ်သော မြို့ဖြစ်သည်။</span></div>
+<span class="journey-status status-live">✓ <span data-lang="en">Live Now</span><span data-lang="mm">ယခုရနိုင်ပြီ</span></span>
+</div>
+<div class="journey-card">
+<div class="journey-icon">🌆</div>
+<div class="journey-phase"><span data-lang="en">Where We're Going Next</span><span data-lang="mm">နောက်တစ်ဆင့်</span></div>
+<div class="journey-title"><span data-lang="en">More Cities</span><span data-lang="mm">နောက်ထပ် မြို့များ</span></div>
+<div class="journey-desc"><span data-lang="en">We're growing. More cities across Myanmar will join the HinKhar family — stay tuned.</span><span data-lang="mm">ကျွန်ုပ်တို့ တိုးချဲ့နေသည်။ မြန်မာနိုင်ငံ တစ်ဝန်းရှိ မြို့များထံ HinKhar ရောက်ရှိလာမည်ဖြစ်သည်။</span></div>
+<span class="journey-status status-next"><span data-lang="en">Coming Soon</span><span data-lang="mm">မကြာမီ</span></span>
+</div>
+<div class="journey-card">
+<div class="journey-icon">🇲🇲</div>
+<div class="journey-phase"><span data-lang="en">Our Destination</span><span data-lang="mm">ကျွန်ုပ်တို့၏ ဦးတည်ရာ</span></div>
+<div class="journey-title"><span data-lang="en">All Myanmar</span><span data-lang="mm">မြန်မာနိုင်ငံ တစ်ဝန်း</span></div>
+<div class="journey-desc"><span data-lang="en">A complete, trusted food directory for every city, town, and community across Myanmar.</span><span data-lang="mm">မြန်မာနိုင်ငံ မြို့၊ ရွာ၊ လူ့အဖွဲ့အစည်း တစ်ခုချင်းစီအတွက် ပြည့်စုံသော Food Directory ဖြစ်ရန်။</span></div>
+<span class="journey-status status-next"><span data-lang="en">The Big Picture</span><span data-lang="mm">နောက်ဆုံး ရည်မှန်းချက်</span></span>
+</div>
+</div>
+</div>
+</section>
+<section class="contact" id="contact">
+<div style="max-width:1000px;margin:0 auto;">
+<span class="section-tag"><span data-lang="en">Contact</span><span data-lang="mm">ဆက်သွယ်ရန်</span></span>
+<h2 class="section-title"><span data-lang="en">Get in touch</span><span data-lang="mm">ဆက်သွယ်ပါ</span></h2>
+<div class="contact-grid">
+<div>
+<p class="section-sub" style="margin-bottom:1.5rem;"><span data-lang="en">Questions about the app, restaurant registration, or pricing — we're here to help.</span><span data-lang="mm">App၊ ဆိုင်မှတ်ပုံတင်ခြင်း သို့မဟုတ် ဈေးနှုန်း မေးမြန်းလိုပါက ဆက်သွယ်ပါ။</span></p>
+<div class="contact-channels">
+<a id="contact-phone" href="#" class="contact-item"><span class="contact-icon">📞</span><div><div class="contact-label"><span data-lang="en">Phone & Viber</span><span data-lang="mm">ဖုန်း & Viber</span></div><div class="contact-value" id="contact-phone-val"></div></div></a>
+<a id="contact-email" href="#" class="contact-item"><span class="contact-icon">✉️</span><div><div class="contact-label">Email</div><div class="contact-value" id="contact-email-val"></div></div></a>
+<a id="contact-fb" href="#" target="_blank" rel="noopener" class="contact-item"><span class="contact-icon">📘</span><div><div class="contact-label">Facebook</div><div class="contact-value">@HinKharFood</div></div></a>
+<a id="contact-tt" href="#" target="_blank" rel="noopener" class="contact-item"><span class="contact-icon">🎵</span><div><div class="contact-label">TikTok</div><div class="contact-value">@hinkhar</div></div></a>
+<a id="contact-li" href="#" target="_blank" rel="noopener" class="contact-item"><span class="contact-icon">💼</span><div><div class="contact-label">LinkedIn</div><div class="contact-value">HinKhar</div></div></a>
+</div>
+<div class="register-box">
+<p><span data-lang="en">Ready to list your restaurant on HinKhar? Fill in our registration form — takes less than 5 minutes.</span><span data-lang="mm">ဆိုင်စာရင်းသွင်းလိုပါက Registration Form ကို ဖြည့်ပါ — မိနစ် ၅ မိနစ်မျှသာ ကြာသည်။</span></p>
+<a id="register-box-btn" href="#" target="_blank" class="btn-register">📋 <span data-lang="en">Register Your Restaurant</span><span data-lang="mm">ဆိုင်မှတ်ပုံတင်ရန်</span></a>
+</div>
+</div>
+<div class="contact-form">
+<p class="form-head"><span data-lang="en">Send us a message</span><span data-lang="mm">စာပေးပို့ပါ</span></p>
+<div class="form-group"><label><span data-lang="en">Your Name</span><span data-lang="mm">အမည်</span></label><input type="text" id="form-name" placeholder="Ma Aye / U Kyaw" required /></div>
+<div class="form-group"><label><span data-lang="en">Phone / Email</span><span data-lang="mm">ဖုန်း / Email</span></label><input type="text" id="form-contact" placeholder="09 xxx xxx xxx" required /></div>
+<div class="form-group"><label><span data-lang="en">Enquiry Type</span><span data-lang="mm">အကြောင်းအရာ</span></label>
+<select id="form-type">
+<option value=""><span data-lang="en">Select</span><span data-lang="mm">ရွေးပါ</span></option>
+<option value="App Download Help">App Download Help</option>
+<option value="Restaurant Registration">Restaurant Registration</option>
+<option value="Plan & Pricing">Plan & Pricing</option>
+<option value="Partnership">Partnership</option>
+<option value="Other">Other</option>
+</select>
+</div>
+<div class="form-group"><label><span data-lang="en">Message</span><span data-lang="mm">စာ</span></label><textarea id="form-message" placeholder="Type your message here..."></textarea></div>
+<button class="btn-submit" onclick="handleSubmit()"><span data-lang="en">Send Message</span><span data-lang="mm">ပို့ပါ</span></button>
+<div class="form-success" id="form-success"><p>✅ <span data-lang="en">Message sent! We'll contact you soon.</span><span data-lang="mm">ကျေးဇူးတင်ပါသည်! မကြာမီ ဆက်သွယ်ပေးပါမည်။</span></p></div>
+</div>
+</div>
+</div>
+</section>
+
+<footer>
+<div class="footer-inner">
+<a href="#" class="footer-logo"><img src="logo_horizontal_yellow.png" alt="HinKhar" /></a>
+<div class="footer-links">
+<a href="#about"><span data-lang="en">About</span><span data-lang="mm">အကြောင်း</span></a>
+<a href="#app">App</a>
+<a href="#download"><span data-lang="en">Download</span><span data-lang="mm">ဒေါင်းလုဒ်</span></a>
+<a href="#restaurant"><span data-lang="en">For Restaurants</span><span data-lang="mm">ဆိုင်ရှင်များ</span></a>
+<a href="#contact"><span data-lang="en">Contact</span><span data-lang="mm">ဆက်သွယ်ရန်</span></a>
+</div>
+<div class="social-links">
+<a id="footer-fb" href="#" target="_blank" class="social-link" aria-label="Facebook">f</a>
+<a id="footer-tt" href="#" target="_blank" class="social-link" aria-label="TikTok">♪</a>
+<a id="footer-li" href="#" target="_blank" class="social-link" aria-label="LinkedIn">in</a>
+</div>
+<p class="footer-copy" id="footer-copy"></p>
+</div>
+</footer>
+
+<script>
+window.addEventListener('DOMContentLoaded', function() {
+  const H = HINKHAR;
+  document.getElementById('stat-restaurants').textContent = H.stat_restaurants;
+  document.getElementById('stat-plans').textContent       = H.stat_plans;
+  document.getElementById('stat-city').textContent        = H.stat_city;
+  document.getElementById('stat-download').textContent    = H.stat_download;
+  document.getElementById('hero-register-btn').href       = H.link_register;
+  document.getElementById('plan-free-btn').href           = H.link_register;
+  document.getElementById('register-box-btn').href        = H.link_register;
+  document.getElementById('dl-appstore').href             = H.link_appstore;
+  document.getElementById('dl-playstore').href            = H.link_playstore;
+  document.getElementById('dl-apk').href                  = H.link_apk;
+  document.getElementById('contact-phone').href           = H.phone_link;
+  document.getElementById('contact-phone-val').textContent= H.phone;
+  document.getElementById('contact-email').href           = 'mailto:' + H.email;
+  document.getElementById('contact-email-val').textContent= H.email;
+  document.getElementById('contact-fb').href              = H.facebook;
+  document.getElementById('contact-tt').href              = H.tiktok;
+  document.getElementById('contact-li').href              = H.linkedin;
+  document.getElementById('footer-fb').href               = H.facebook;
+  document.getElementById('footer-tt').href               = H.tiktok;
+  document.getElementById('footer-li').href               = H.linkedin;
+  document.getElementById('footer-copy').textContent      =
+    '© ' + H.year + ' HinKhar Digital Company Limited · Mandalay, Myanmar · Your Next Bite, My Guide';
+});
+
+function setLang(lang) {
+  document.body.classList.toggle('lang-mm', lang === 'mm');
+  document.querySelectorAll('.lang-btn').forEach(function(b) {
+    b.classList.toggle('active', b.textContent.trim() === (lang === 'en' ? 'EN' : 'မြန်မာ'));
+  });
+  localStorage.setItem('hk_lang', lang);
+}
+(function() {
+  var saved = localStorage.getItem('hk_lang');
+  if (saved === 'mm') setLang('mm');
+})();
+
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+document.addEventListener('click', function(e) {
+  var menu = document.getElementById('mobileMenu');
+  var btn  = document.querySelector('.hamburger');
+  if (!menu.contains(e.target) && !btn.contains(e.target)) menu.classList.remove('open');
+});
+
+function handleSubmit() {
+ var name = document.getElementById('form-name').value.trim();
+  var contact = document.getElementById('form-contact').value.trim();
+  var type = document.getElementById('form-type').value || "General";
+  var message = document.getElementById('form-message').value.trim();
+
+  if (!name || !contact || !message) {
+    alert('Please fill in your name, contact, and message.\nအမည်၊ ဖုန်း/Email နှင့် စာတိုကို ဖြည့်ပေးပါ။');
+    return;
+  }
+
+  emailjs.send("service_7je6t61", "template_2kx2wks", {
+    from_name: name,
+    user_contact: contact,
+    enquiry_type: type,
+    message: message,
+    reply_to: contact
+  })
+  .then(function () {
+      document.getElementById('form-success').style.display = 'block';
+
+      document.getElementById('form-name').value = "";
+      document.getElementById('form-contact').value = "";
+      document.getElementById('form-type').value = "";
+      document.getElementById('form-message').value = "";
+  })
+  .catch(function (error) {
+      console.error(error);
+      alert("Sorry, the message could not be sent. Please try again.");
+  });
+}
+
+var navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', function() {
+  var current = '';
+  document.querySelectorAll('section[id]').forEach(function(s) {
+    if (window.scrollY >= s.offsetTop - 100) current = s.getAttribute('id');
+  });
+  navLinks.forEach(function(a) {
+    a.style.color = a.getAttribute('href') === '#' + current ? 'var(--yellow)' : '';
+  });
+});
+</script>
+</body>
+</html>
